@@ -10,12 +10,11 @@ const { commonConstant } = require("./app/constants/commonConstant");
 
 const app = express();
 
-app.use(express.static("public/baseServerUi"));
 app.use(trimRequest.all);
 app.use(
   cors({
     origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    methods: ["GET", "POST", "PATCH"],
     exposedHeaders: commonConstant.AUTHORIZATION_HEADER,
     credentials: true,
   })

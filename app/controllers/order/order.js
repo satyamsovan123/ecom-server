@@ -32,8 +32,6 @@ const order = async (req, res) => {
       };
     }
 
-    console.log(newOrder);
-
     /* 
    ----- Commenting out as Stripe is out of scope (they are reducing operations in India from May 2024) -----
 
