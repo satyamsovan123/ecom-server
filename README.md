@@ -1,7 +1,7 @@
 ### Sample backend for testing payment integration
 
 This Node.js backend server uses Express, MongoDB and Mongoose to provide a simple API for testing payment integration.
-
+T
 The server provides the following endpoints -
 
 - POST: /api/v1/signin (Sign in a user)
@@ -44,3 +44,7 @@ Stripe | Razorpay | PhonePe | Paytm are to be used for payment integration. It's
 
 - Run `npm start` to start the server
 - The server will start on `http://localhost:3000`
+
+### Live demo
+
+The backend is deployed on Render (free) - [https://ecom-server-gzxu.onrender.com](https://ecom-server-gzxu.onrender.com)
