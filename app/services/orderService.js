@@ -65,6 +65,8 @@ const updateOrder = async (orderId, updatedData) => {
 
 const refundOrder = async (orderId) => {
   try {
+    // Need to add logic if order created more than 7 days ago, then refund will not be processed
+
     return await Order.findOneAndUpdate(
       { _id: orderId, paymentStatus: "completed" },
       {
@@ -86,4 +88,31 @@ const refundOrder = async (orderId) => {
   }
 };
 
-module.exports = { getAllOrder, createOrder, updateOrder, refundOrder };
+const confirmOrderAfterPayment = async (paymentInfo) => {
+  try {
+    return await Order.findOneAndUpdate(
+      { paymentInfo: paymentInfo },
+      { paymentStatus: "completed" },
+      {
+        new: true,
+      }
+    ).select("-paymentInfo");
+  } catch (error) {
+    console.error(error);
+    throw {
+      statusCode: error.statusCode || 500,
+      message:
+        error.message ||
+        commonConstant.GENERIC_ERROR("updating order in database"),
+      data: {},
+    };
+  }
+};
+
+module.exports = {
+  getAllOrder,
+  createOrder,
+  updateOrder,
+  refundOrder,
+  confirmOrderAfterPayment,
+};

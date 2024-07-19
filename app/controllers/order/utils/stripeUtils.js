@@ -20,34 +20,38 @@ const createPaymentIntent = async (orderDetails) => {
     console.error(error);
     throw {
       message:
-        error.message ||
-        commonConstant.GENERIC_ERROR("processing payment information"),
+        error.message || commonConstant.GENERIC_ERROR("processing payment"),
     };
   }
 };
 
-const confirmPayment = async (orderDetails) => {
+const confirmPaymentIntent = async (paymentIntentId) => {
   try {
+    return stripe.paymentIntents.retrieve(paymentIntentId);
   } catch (error) {
     console.error(error);
     throw {
       message:
-        error.message ||
-        commonConstant.GENERIC_ERROR("processing payment information"),
+        error.message || commonConstant.GENERIC_ERROR("confirming payment"),
     };
   }
 };
 
-const createReceipt = (orderDetails) => {
+const createReceipt = async (charge) => {
   try {
+    const c = await stripe.charges.retrieve(charge);
+    return c.receipt_url;
   } catch (error) {
     console.error(error);
     throw {
       message:
-        error.message ||
-        commonConstant.GENERIC_ERROR("processing payment information"),
+        error.message || commonConstant.GENERIC_ERROR("creating receipt"),
     };
   }
 };
 
-module.exports = { createPaymentIntent, createReceipt, confirmPayment };
+module.exports = {
+  createPaymentIntent,
+  createReceipt,
+  confirmPaymentIntent,
+};

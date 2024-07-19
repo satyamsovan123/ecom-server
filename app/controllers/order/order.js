@@ -32,9 +32,6 @@ const order = async (req, res) => {
       };
     }
 
-    /* 
-   ----- Commenting out as Stripe is out of scope (they are reducing operations in India from May 2024) -----
-
     // Stripe integration
     const paymentIntent = await createPaymentIntent(newOrder);
     if (!paymentIntent || (paymentIntent && !paymentIntent.id)) {
@@ -86,14 +83,13 @@ const order = async (req, res) => {
         data: {},
       };
     }
+
     // Send clientSecret
     const clientSecret = paymentIntent.client_secret;
     updatedOrder = updatedOrder.toObject();
     updatedOrder["clientSecret"] = clientSecret;
-    response.data = updatedOrder;
-    */
 
-    response.data = orderData;
+    response.data = updatedOrder;
     return res.status(response.statusCode).send(response);
   } catch (error) {
     response.statusCode = error.statusCode || 500;

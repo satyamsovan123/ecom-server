@@ -41,6 +41,7 @@ const generateOrderDetails = async (req) => {
       email: req.user.email, // Populate email from token
       totalAmount: totalAmount, // Populate total amount
       coupon: coupon?._id || null, // Populate coupon id (if applied)
+      currency: product.currency, // Populate currency from product
     };
 
     return orderDetails;

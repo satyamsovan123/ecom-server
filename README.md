@@ -25,6 +25,17 @@ The server uses JWT for authorization (Authorization: Bearer `token`) in headers
 
 Stripe | Razorpay | PhonePe | Paytm are to be used for payment integration. It's not implemented yet.
 
+A payment gateway that should support -
+
+- Card payments
+- UPI payments
+- International transactions
+- Transactions within India
+- Subscription
+- One-time payment
+- Easy to integrate
+- Good documentation
+
 ### Setup application
 
 - Clone the repository

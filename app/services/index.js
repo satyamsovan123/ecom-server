@@ -4,6 +4,7 @@ const {
   createOrder,
   updateOrder,
   refundOrder,
+  confirmOrderPayment,
 } = require("./orderService");
 const { getAllCoupon, getCoupon } = require("./couponService");
 const { getAllProduct, getProduct } = require("./productService");
@@ -25,4 +26,5 @@ module.exports = {
   refundOrder,
   getAllSubscription,
   createSubscription,
+  confirmOrderPayment,
 };
